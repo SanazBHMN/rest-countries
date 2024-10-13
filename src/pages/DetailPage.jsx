@@ -1,27 +1,18 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+// import components
 import Button from "../components/Button";
+// import hooks
+import useFetchCountry from "../hooks/useFetchCountry";
 
 function DetailPage() {
-  const [country, setCountry] = useState(null);
+  const [country, fetchSingleCountry] = useFetchCountry();
 
   const { name } = useParams();
 
-  console.log(name);
-
   useEffect(() => {
-    const fetchSingleCountry = async () => {
-      const response = await axios.get(
-        `https://restcountries.com/v3.1/name/${name}?fullText=true`
-      );
-      setCountry(response.data[0]);
-    };
-
-    fetchSingleCountry();
+    fetchSingleCountry(name);
   }, []);
-
-  console.log(country);
 
   return (
     <>
@@ -78,7 +69,7 @@ function DetailPage() {
                 <h3>Border Countries:</h3>
                 <ul className="flex flex-wrap gap-3">
                   {country.borders.map((borderCountry) => (
-                    <li>
+                    <li key={borderCountry}>
                       <Button hasIcon={false} text={borderCountry} />
                     </li>
                   ))}

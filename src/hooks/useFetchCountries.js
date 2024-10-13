@@ -6,8 +6,7 @@ const useFetchCountries = () => {
 
   const fetchCountries = async () => {
     try {
-      const response = await axios.get(import.meta.env.VITE_BASE_URL);
-      //   console.log(response.data);
+      const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/all`);
       setCountries(response.data);
     } catch (error) {
       console.log(error);
