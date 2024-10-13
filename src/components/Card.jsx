@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Card({ country }) {
   return (
     <li className="w-full sm:w-72 my-5 shadow-md rounded-md">
@@ -7,9 +9,17 @@ function Card({ country }) {
         className="h-44 min-w-full rounded-t-md"
       />
       <div className="px-5 pt-7 pb-9">
-        <h3 className="font-bold mb-5 text-lg">{country.name.official}</h3>
+        <Link
+          to={`/name/${country.name.common}`}
+          className="font-bold mb-5 text-lg"
+        >
+          {country.name.official}
+        </Link>
         <p className="font-bold">
-          Population: <span className="font-normal">{country.population}</span>
+          Population:{" "}
+          <span className="font-normal">
+            {country.population.toLocaleString()}
+          </span>
         </p>
         <p className="font-bold">
           Region: <span className="font-normal">{country.region}</span>
