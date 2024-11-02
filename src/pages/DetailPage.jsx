@@ -14,6 +14,12 @@ function DetailPage() {
     fetchSingleCountry(name);
   }, []);
 
+  console.log(country);
+
+  const countryCode = country && Object.keys(country?.currencies)[0];
+
+  const languageNames = country && Object.values(country.languages).join(", ");
+
   return (
     <>
       <Button hasIcon={true} text="back" />
@@ -57,10 +63,14 @@ function DetailPage() {
                   Top Level Domain: <span className="font-normal">{}</span>
                 </li>
                 <li className="font-semibold my-3">
-                  Currencies: <span className="font-normal">{}</span>
+                  Currencies:{" "}
+                  <span className="font-normal">
+                    {country.currencies[countryCode].name}
+                  </span>
                 </li>
                 <li className="font-semibold my-3">
-                  {/* Languages: <span className="font-normal">{country.languages}</span> */}
+                  Languages:{" "}
+                  <span className="font-normal">{languageNames}</span>
                 </li>
               </ul>
             </div>
