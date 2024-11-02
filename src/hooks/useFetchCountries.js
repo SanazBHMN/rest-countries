@@ -13,7 +13,7 @@ const useFetchCountries = () => {
     }
   };
 
-  return [fetchCountries, countries];
+  return [fetchCountries, countries, setCountries];
 };
 
 export default useFetchCountries;
